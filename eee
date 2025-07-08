@@ -1,0 +1,1519 @@
+local u1 = game:GetService("TweenService")
+local u2 = game:GetService("ReplicatedStorage")
+u2:FindFirstChild("Remotes")
+local u3 = game:GetService("Players")
+u2:FindFirstChild("Effects"):FindFirstChild("Particles")
+game:GetService("Lighting")
+local u4 = game:GetService("RunService")
+game:GetService("SoundService")
+local u5 = game:GetService("UserInputService")
+local u6 = game:GetService("GuiService")
+game:GetService("GamepadService")
+local u7 = u4:IsStudio()
+local u8 = Random.new()
+local u9 = u3.LocalPlayer
+local u10 = u9:WaitForChild("DebrisBD")
+local u11 = u2.Effects.Games.Dalgona
+local u12 = u9.PlayerGui
+local u13 = u4:IsStudio() and false
+local u14 = {
+    ["Pick"] = CFrame.new(-0.00668334961, -2.36825562, -2.05554199, -0.00869561918, 0.115533076, -0.993265629, -0.0745474771, 0.990464151, 0.115859859, 0.997179568, 0.0750529096, 0),
+    ["Umbrella"] = CFrame.new(-0.0252380371, -2.93081665, -2.06484985, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    ["UmbrellaOutline"] = CFrame.new(-0.0163269043, -2.92922974, -1.69216919, 0.693418622, 0, 0.720534921, 0, 1, 0, -0.720534921, 0, 0.693418622),
+    ["Star"] = CFrame.new(-0.0252380371, -2.93081665, -2.06484985, 0.805959225, 0, -0.591970921, 0, 1, 0, 0.591970921, 0, 0.805959225),
+    ["StarOutline"] = CFrame.new(-0.254730225, -2.91059113, -1.96237183, 0.168880373, 0, 0.985636532, 0, 1, 0, -0.985636592, 0, 0.168880373),
+    ["Circle"] = CFrame.new(-0.0252380371, -2.93081665, -2.06484985, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    ["CircleOutline"] = CFrame.new(-0.0307922363, -2.90307903, -1.68043518, 1, 0, 0, 0, 1, 0, 0, 0, 1) + Vector3.new(0, -0.0215, 0),
+    ["Triangle"] = CFrame.new(-0.0252380371, -2.93081665, -2.06484985, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    ["TriangleOutline"] = CFrame.new(0.0382995605, -2.90168762, -1.79675293, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    ["SackBoy"] = CFrame.new(-0.0252380371, -2.93081665, -2.06484985, -1, 0, 0, 0, 1, 0, 0, 0, -1),
+    ["SackBoyOutline"] = CFrame.new(-0.307861328, -2.95241547, -2.26300049, 0.159608155, 1.45519152e-11, -0.987180352, 0.000286216993, 1.00000012, 0.0000436031551, 0.987181306, -0.000289805466, 0.159607947),
+    ["MonaLisa"] = CFrame.new(-0.0252380371, -2.93081665, -2.06484985, -1, 9.11913977e-16, -4.54747351e-13, -9.11913977e-16, 1, -7.21644966e-16, -4.54747351e-13, 7.21644966e-16, -1),
+    ["MonaLisaOutline"] = CFrame.new(-0.0782165527, -2.89529419, -2.52568054, -0.435961127, -0.0000353674841, 0.899965405, -0.000176951246, 1, -0.000046419962, -0.899965465, -0.000179487324, -0.435961097)
+}
+local u15 = {
+    ["UmbrellaShattered1"] = CFrame.new(-0.134735107, -0.000221252441, 0.165374756, 0.981510282, -9.0712274e-6, -0.19140996, 0.0000250203266, 1.00000024, 0.0000808602344, 0.191409916, -0.0000834540988, 0.981510222),
+    ["UmbrellaShattered2"] = CFrame.new(-0.220214844, -0.000205993652, -0.037612915, 0.981537044, -9.07131471e-6, -0.191272601, 0.0000249965378, 1.00000024, 0.0000808034092, 0.191272557, -0.0000834540988, 0.981536984),
+    ["UmbrellaShattered3"] = CFrame.new(0.118469238, -0.00032043457, 0.240325928, 0.99910152, -3.38812401e-6, -0.0423841141, 4.16277453e-6, 1.00000012, 0.0000181896321, 0.0423841029, -0.0000183497104, 0.99910146),
+    ["UmbrellaShattered4"] = CFrame.new(-0.0000610351562, -0.000297546387, -0.0416107178, 0.970347047, 0.0000343134416, 0.241716728, -8.74951911e-6, 1.00000012, -0.000106833424, -0.241716743, 0.000101550599, 0.970346928),
+    ["UmbrellaShattered5"] = CFrame.new(0.157745361, -0.000366210938, -0.00202941895, 0.988488495, -8.51505683e-6, -0.151297465, 0.0000184393139, 1.00000024, 0.0000641913284, 0.15129745, -0.0000662422026, 0.988488317),
+    ["UmbrellaShattered6"] = CFrame.new(-0.0594787598, 0.00299835205, 0.0817718506, 0.947389662, 0, 0.320082486, 0, 1, 0, -0.320082486, 0, 0.947389662),
+    ["UmbrellaShattered7"] = CFrame.new(-0.153259277, 0.0068359375, -0.192260742, 0.565928519, 0, -0.824454427, 0, 1, 0, 0.824454427, 0, 0.565928519),
+    ["UmbrellaShattered8"] = CFrame.new(0.119537354, -0.00412750244, 0.094543457, 0.784292817, 0, -0.620390832, 0, 1, 0, 0.620390832, 0, 0.784292817),
+    ["UmbrellaShattered9"] = CFrame.new(0.0526123047, 0, -0.00756835938, 0.930060446, 0, 0.367406577, 0, 1, 0, -0.367406577, 0, 0.930060446),
+    ["UmbrellaShattered10"] = CFrame.new(-0.0330810547, 0.00339508057, -0.145904541, -0.18164593, 0, 0.983364105, 0, 1, 0, -0.983364105, 0, -0.18164593),
+    ["UmbrellaShattered11"] = CFrame.new(-0.0114746094, 0.00910186768, 0.0853881836, 0.985560536, 0, -0.169323355, 0, 1, 0, 0.169323355, 0, 0.985560536),
+    ["StarShattered1"] = CFrame.new(-0.134460449, -0.000221252441, 0.165710449, 0.98150444, -9.0711801e-6, -0.191408843, 0.0000250203266, 1.00000024, 0.0000808602344, 0.191408843, -0.0000834536186, 0.98150444),
+    ["StarShattered2"] = CFrame.new(-0.219940186, -0.000205993652, -0.0372924805, 0.981531262, -9.07126741e-6, -0.191271454, 0.0000249965378, 1.00000024, 0.0000808034092, 0.191271424, -0.0000834536113, 0.981531262),
+    ["StarShattered3"] = CFrame.new(0.0973052979, -0.00032043457, -0.0979919434, 0.99909842, 5.55329279e-7, -0.0423839986, 0, 1, 0.0000131023216, 0.0423839986, -0.0000130905091, 0.99909842),
+    ["StarShattered4"] = CFrame.new(0.0810394287, -0.000297546387, -0.0564575195, 0.970344067, 0.0000258232649, 0.241716027, 0, 1, -0.000106833118, -0.241716027, 0.000103664868, 0.970344067),
+    ["StarShattered5"] = CFrame.new(0.157989502, -0.000366210938, -0.0016784668, 0.988482714, -8.51500772e-6, -0.151296616, 0.0000184393139, 1.00000024, 0.0000641913284, 0.151296526, -0.000066241817, 0.988482475),
+    ["StarShattered6"] = CFrame.new(-0.0591888428, 0.00299835205, 0.0821228027, 0.947384119, 0, 0.320080608, 0, 1, 0, -0.320080608, 0, 0.947384119),
+    ["StarShattered7"] = CFrame.new(-0.152984619, 0.0068359375, -0.191955566, 0.565925241, 0, -0.824449599, 0, 1, 0, 0.824449599, 0, 0.565925241),
+    ["StarShattered8"] = CFrame.new(-0.179534912, -0.00412750244, -0.0574035645, 0.784290493, 0, -0.620388985, 0, 1, 0, 0.620388985, 0, 0.784290493),
+    ["StarShattered9"] = CFrame.new(0.0528564453, 0, -0.00723266602, 0.930055022, 0, 0.367404401, 0, 1, 0, -0.367404401, 0, 0.930055022),
+    ["StarShattered10"] = CFrame.new(-0.112045288, 0.00339508057, -0.0873413086, -0.181644827, 0, 0.983358383, 0, 1, 0, -0.983358383, 0, -0.181644827),
+    ["StarShattered11"] = CFrame.new(-0.0111999512, 0.00910186768, 0.085723877, 0.985554814, 0, -0.169322342, 0, 1, 0, 0.169322342, 0, 0.985554814),
+    ["CircleShattered1"] = CFrame.new(-0.134918213, -0.000511169434, 0.165679932, 0.981510282, -9.0712274e-6, -0.19140996, 0.0000250203266, 1.00000024, 0.0000808602344, 0.191409916, -0.0000834540988, 0.981510222),
+    ["CircleShattered2"] = CFrame.new(-0.220397949, -0.000495910645, -0.0373077393, 0.981537044, -9.07131471e-6, -0.191272601, 0.0000249965378, 1.00000024, 0.0000808034092, 0.191272557, -0.0000834540988, 0.981536984),
+    ["CircleShattered3"] = CFrame.new(-0.0651855469, -0.000610351562, -0.0198059082, 0.642763138, 0.0000135445371, -0.766065121, 0, 1, 0.0000181896194, 0.766065061, -0.0000123797117, 0.642763138),
+    ["CircleShattered4"] = CFrame.new(-0.000244140625, -0.000587463379, -0.041305542, 0.970347047, 0.0000343134416, 0.241716728, -8.74951911e-6, 1.00000012, -0.000106833424, -0.241716743, 0.000101550599, 0.970346928),
+    ["CircleShattered5"] = CFrame.new(0.157562256, -0.00065612793, -0.00172424316, 0.988488495, -8.51505683e-6, -0.151297465, 0.0000184393139, 1.00000024, 0.0000641913284, 0.15129745, -0.0000662422026, 0.988488317),
+    ["CircleShattered6"] = CFrame.new(0.0428161621, 0.00270843506, 0.140365601, 0.947389662, 0, 0.320082486, 0, 1, 0, -0.320082486, 0, 0.947389662),
+    ["CircleShattered7"] = CFrame.new(-0.207122803, 0.00654602051, -0.191955566, 0.565928519, 0, -0.824454427, 0, 1, 0, 0.824454427, 0, 0.565928519),
+    ["CircleShattered8"] = CFrame.new(0.0387573242, -0.00441741943, 0.113708496, 0.871429086, 0, -0.49052155, 0, 1, 0, 0.49052155, 0, 0.871429086),
+    ["CircleShattered9"] = CFrame.new(0.0969543457, -0.000289916992, -0.0542144775, 0.930060446, 0, 0.367406577, 0, 1, 0, -0.367406577, 0, 0.930060446),
+    ["CircleShattered10"] = CFrame.new(0.10546875, 0.00310516357, -0.0414123535, -0.18164593, 0, 0.983364105, 0, 1, 0, -0.983364105, 0, -0.181645915),
+    ["CircleShattered11"] = CFrame.new(-0.141357422, 0.00881195068, 0.275238037, 0.709959865, 0, 0.704242229, 0, 1, 0, -0.704242229, 0, 0.709959865),
+    ["CircleShattered12"] = CFrame.new(-0.0621032715, -0.000289916992, 0.0266876221, 0.999486864, 0, -0.032030981, 0, 1, 0, 0.032030981, 0, 0.999486864),
+    ["TriangleShattered1"] = CFrame.new(-0.134460449, -0.000633239746, 0.165664673, 0.981510282, -9.0712274e-6, -0.19140996, 0.0000250203266, 1.00000024, 0.0000808602344, 0.191409916, -0.0000834540988, 0.981510222),
+    ["TriangleShattered2"] = CFrame.new(0.0108032227, -0.000617980957, 0.303543091, 0.990409791, -0.0000134362053, -0.138161123, 0.0000249965342, 1, 0.000081937731, 0.138161108, -0.0000846054681, 0.990409851),
+    ["TriangleShattered3"] = CFrame.new(0.234588623, -0.000732421875, 0.240615845, 0.99910152, 1.60418261e-12, -0.0423841141, 0, 1, 0.0000181896321, 0.0423841029, -0.0000183497104, 0.99910146),
+    ["TriangleShattered4"] = CFrame.new(0.241210938, -0.000709533691, 0.0857543945, 0.973085344, -0.0000246192812, -0.230445474, 0, 1, -0.000106833446, 0.230445474, 0.000103958046, 0.973085344),
+    ["TriangleShattered5"] = CFrame.new(-0.0744934082, -0.000778198242, -0.00173950195, 0.986772299, -0.00002050484, 0.162113607, 0.0000184393139, 1, 0.0000641913284, -0.162113681, -0.0000629887363, 0.98677212),
+    ["TriangleShattered6"] = CFrame.new(-0.171478271, 0.00258636475, 0.024017334, 0.947389662, 0, 0.320082486, 0, 1, 0, -0.320082486, 0, 0.947389662),
+    ["TriangleShattered7"] = CFrame.new(-0.0579528809, 0.0064239502, -0.385986328, 0.686382055, 0, -0.727241278, 0, 1, 0, 0.727241278, 0, 0.686382055),
+    ["TriangleShattered8"] = CFrame.new(0.119812012, -0.00453948975, 0.176208496, 0.784292817, 0, -0.620390832, 0, 1, 0, 0.620390832, 0, 0.784292817),
+    ["SackBoyShattered1"] = CFrame.new(-0.135009766, -0.000473022461, 0.165756226, 0.981510282, -9.07123467e-6, -0.191409871, 0.0000250203266, 1.00000024, 0.0000808602344, 0.191409826, -0.0000834540988, 0.981510222),
+    ["SackBoyShattered2"] = CFrame.new(-0.220489502, -0.000457763672, -0.0372314453, 0.981537044, -9.07132198e-6, -0.191272512, 0.0000249965378, 1.00000024, 0.0000808034092, 0.191272467, -0.0000834540988, 0.981536984),
+    ["SackBoyShattered3"] = CFrame.new(-0.079284668, -0.00057220459, 0.176391602, 0.9991014, 0, -0.0423840173, 0, 1, 0.0000181896194, 0.0423840135, -0.0000183497068, 0.99910146),
+    ["SackBoyShattered4"] = CFrame.new(0.0814819336, -0.000549316406, 0.0908203125, 0.970346928, 0.0000343134998, 0.241716802, 0, 1, -0.000106833431, -0.241716802, 0.00010155057, 0.970346928),
+    ["SackBoyShattered5"] = CFrame.new(0.157470703, -0.000617980957, -0.00164794922, 0.974696636, 0, -0.223532379, 0.0000184393139, 1, 0.0000641913284, 0.223532379, -0.0000666888518, 0.974696457),
+    ["SackBoyShattered6"] = CFrame.new(-0.059753418, 0.00274658203, 0.0821533203, 0.947389662, 0, 0.320082575, 0, 1, 0, -0.320082575, 0, 0.947389662),
+    ["SackBoyShattered7"] = CFrame.new(0.065826416, 0.00658416748, -0.0103607178, 0.99856776, 0, -0.0535030663, 0, 1, 0, 0.0535030663, 0, 0.99856776),
+    ["SackBoyShattered8"] = CFrame.new(-0.00311279297, -0.00437927246, 0.0102996826, 0.996716499, 0, -0.0809700489, 0, 1, 0, 0.0809700489, 0, 0.996716499),
+    ["SackBoyShattered9"] = CFrame.new(0.0523376465, -0.00025177002, -0.00718688965, 0.930060387, 0, 0.367406666, 0, 1, 0, -0.367406666, 0, 0.930060387),
+    ["SackBoyShattered10"] = CFrame.new(-0.177337646, 0.00314331055, -0.145523071, -0.322440624, 0, 0.946589768, 0, 1, 0, -0.946589768, 0, -0.322440624),
+    ["SackBoyShattered11"] = CFrame.new(-0.482055664, 0.00885009766, 0.337341309, 0.933944106, 0, 0.357418925, 0, 1, 0, -0.357418925, 0, 0.933944106),
+    ["SackBoyShattered12"] = CFrame.new(-0.000274658203, -0.00025177002, 0.0299835205, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+    ["SackBoyShattered13"] = CFrame.new(-0.0172729492, -0.00025177002, 0.135726929, 0.880441487, 0, 0.47415486, 0, 1, 0, -0.47415486, 0, 0.880441487),
+    ["MonaLisaShattered1"] = CFrame.new(-0.114898682, -0.00065612793, 0.0543060303, 0.981510282, 1.45962062e-11, -0.191409901, 0.0000250203266, 1, 0.0000801747083, 0.191409916, -0.0000834814273, 0.981510222),
+    ["MonaLisaShattered2"] = CFrame.new(-0.262084961, -0.000640869141, -0.0375518799, 0.998444796, -0.0000203909894, -0.0557500795, 0.0000249965378, 1, 0.0000819132765, 0.0557500944, -0.0000831794459, 0.998444736),
+    ["MonaLisaShattered3"] = CFrame.new(-0.0692749023, -0.000755310059, -0.0909576416, 0.992767096, 3.19858896e-12, -0.120056093, -7.93564755e-15, 1, 0.0000181896194, 0.120056078, -0.0000182939875, 0.992767155),
+    ["MonaLisaShattered4"] = CFrame.new(0.142974854, -0.000732421875, 0.0168151855, 0.970346808, 0.0000258234249, 0.241716683, -5.6835123e-15, 1, -0.000106833424, -0.241716683, 0.000103665472, 0.970346808),
+    ["MonaLisaShattered5"] = CFrame.new(-0.235870361, -0.00598144531, -0.00198364258, 0.64512825, 0.0000400489043, -0.764074445, 0.0000184393139, 1, 0.0000641913284, 0.764074564, -0.0000533243692, 0.645128071),
+    ["MonaLisaShattered6"] = CFrame.new(-0.129547119, 0.00256347656, 0.137786865, 0.974001408, -1.71163657e-22, 0.226541907, -5.79778043e-15, 1, -7.2757606e-15, -0.226541907, -1.49636015e-29, 0.974001408),
+    ["MonaLisaShattered7"] = CFrame.new(0.0132751465, 0.00640106201, 0.108261108, 0.99891746, -1.71163657e-22, 0.0465189442, -7.01885212e-15, 1, -6.10628127e-15, -0.0465189442, -1.49636015e-29, 0.99891746),
+    ["MonaLisaShattered8"] = CFrame.new(0.0399475098, -0.00456237793, 0.00997924805, 0.957817495, -1.71163657e-22, -0.287377208, -8.64665039e-15, 1, -3.43312851e-15, 0.287377208, -1.49636015e-29, 0.957817495),
+    ["MonaLisaShattered9"] = CFrame.new(0.0379333496, -0.000434875488, -0.00750732422, 0.908136725, -1.71163657e-22, 0.418673724, -4.20806815e-15, 1, -8.29717392e-15, -0.418673724, -1.49636015e-29, 0.908136725),
+    ["MonaLisaShattered10"] = CFrame.new(-0.177520752, 0.00296020508, -0.218551636, -0.274944127, -1.71163657e-22, 0.961460292, 7.55646817e-15, 1, -5.42685539e-15, -0.961460292, -1.49636015e-29, -0.274944127),
+    ["MonaLisaShattered11"] = CFrame.new(-0.496368408, 0.00866699219, 0.337020874, 0.210144281, -1.71163657e-22, 0.977670312, 4.11118029e-15, 1, -8.34560472e-15, -0.977670312, -1.49636015e-29, 0.210144281),
+    ["MonaLisaShattered12"] = CFrame.new(0.107116699, -0.000434875488, 0.0296630859, 0.775082707, -1.71163657e-22, -0.631859779, -9.30229794e-15, 1, 1.34936584e-16, 0.631859779, -1.49636015e-29, 0.775082707),
+    ["MonaLisaShattered13"] = CFrame.new(-0.167297363, -0.000434875488, 0.106033325, 0.880441546, -1.71163657e-22, 0.47415477, -3.68572242e-15, 1, -8.54203759e-15, -0.47415477, -1.49636015e-29, 0.880441546),
+    ["MonaLisaShattered14"] = CFrame.new(-0.121948242, -0.000183105469, -0.00032043457, 0.924306273, -1.71163657e-22, -0.381651491, -8.94643737e-15, 1, -2.55190338e-15, 0.381651491, -1.49636015e-29, 0.924306273),
+    ["MonaLisaShattered15"] = CFrame.new(-0.0557250977, -0.000183105469, -0.0223388672, 0.988736629, -1.71163657e-22, 0.149666458, -6.34909216e-15, 1, -6.79999956e-15, -0.149666458, -1.49636015e-29, 0.988736629),
+    ["MonaLisaShattered16"] = CFrame.new(-0.000183105469, -0.000183105469, -0.00772094727, 1, -1.71163657e-22, -1.74843734e-7, -7.29531182e-15, 1, -5.77315973e-15, 1.74847372e-7, -1.49636015e-29, 1),
+    ["MonaLisaShattered17"] = CFrame.new(-0.000183105469, -0.000183105469, -0.0426483154, 0.987430334, -1.71163657e-22, -0.158055037, -8.11608844e-15, 1, -4.54753355e-15, 0.158055037, -1.49636015e-29, 0.987430334),
+    ["MonaLisaShattered18"] = CFrame.new(-0.000183105469, -0.000183105469, -0.0772399902, 0.953667879, -1.71163657e-22, -0.300861388, -8.694224e-15, 1, -3.31080065e-15, 0.300861388, -1.49636015e-29, 0.953667879),
+    ["MonaLisaShattered19"] = CFrame.new(0.0631713867, -0.0274429321, -0.00032043457, 0.932961583, -1.71163657e-22, -0.359975874, -8.88444388e-15, 1, -2.7600018e-15, 0.359975874, -1.49636015e-29, 0.932961583),
+    ["MonaLisaShattered20"] = CFrame.new(0.0674133301, -0.000183105469, -0.00032043457, 0.994413257, -1.71163657e-22, 0.105556965, -6.64515728e-15, 1, -6.51097879e-15, -0.105556965, -1.49636015e-29, 0.994413257),
+    ["MonaLisaShattered21"] = CFrame.new(0.0986328125, -0.000183105469, -0.00032043457, 0.948050678, -1.71163657e-22, -0.318119586, -8.75287933e-15, 1, -3.15246753e-15, 0.318119586, -1.49636015e-29, 0.948050678),
+    ["MonaLisaShattered22"] = CFrame.new(-0.000183105469, -0.000183105469, -0.046585083, 0.87791115, -1.71163657e-22, 0.478823572, -3.64030874e-15, 1, -8.56148885e-15, -0.478823572, -1.49636015e-29, 0.87791115)
+}
+local function u24(_, p16, p17, p18) --[[Anonymous function at line 131]]
+    --[[
+    Upvalues:
+        [1] = u11
+        [2] = u12
+    --]]
+    if p18 then
+        local v19 = u11.ViewportFrameLighter.WorldModel.Lighter:Clone()
+        v19.Parent = workspace.Effects
+        v19:ScaleTo(0.014)
+        table.insert(p16, v19)
+        for _, v20 in pairs(v19:GetDescendants()) do
+            if v20:IsA("BasePart") then
+                v20.Transparency = 0.75
+            end
+        end
+        return v19
+    end
+    local v21 = u11.ViewportFrameLighter:Clone()
+    v21.Parent = u12.ImpactFrames
+    local v22 = v21.WorldModel.Lighter
+    if p17 then
+        v21.Size = UDim2.new(0, 75, 0, 133)
+    end
+    local v23 = Instance.new("Camera")
+    v23.CFrame = CFrame.new(0, 0, 26, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    v23.Parent = v21
+    v23.FieldOfView = 70
+    v23.CameraType = Enum.CameraType.Scriptable
+    v21.CurrentCamera = v23
+    table.insert(p16, v21)
+    table.insert(p16, v22)
+    table.insert(p16, v23)
+    return v22, v21, v23
+end
+local function u30(_, p25, p26) --[[Anonymous function at line 171]]
+    --[[
+    Upvalues:
+        [1] = u11
+        [2] = u12
+    --]]
+    local v27 = u11.ViewportFrame:Clone()
+    v27.Parent = u12.ImpactFrames
+    local v28 = v27.PickModel
+    if p26 then
+        v27.Size = UDim2.new(0, 75, 0, 133)
+    end
+    local v29 = Instance.new("Camera")
+    v29.CFrame = CFrame.new(0, 0, 26, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    v29.Parent = v27
+    v29.FieldOfView = 70
+    v29.CameraType = Enum.CameraType.Scriptable
+    v27.CurrentCamera = v29
+    table.insert(p25, v27)
+    table.insert(p25, v28)
+    table.insert(p25, v29)
+    return v28, v27, v29
+end
+function Dalgona(p31, u32)
+    --[[
+    Upvalues:
+        [1] = u9
+        [2] = u2
+        [3] = u3
+        [4] = u5
+        [5] = u6
+        [6] = u11
+        [7] = u7
+        [8] = u14
+        [9] = u1
+        [10] = u12
+        [11] = u10
+        [12] = u30
+        [13] = u8
+        [14] = u15
+        [15] = u4
+        [16] = u24
+        [17] = u13
+    --]]
+    print("SetupDalgonaClient")
+    if p31.Init then
+        local u33 = workspace.CurrentCamera
+        local _ = u9.Character
+        local u34 = require(u2.Modules.SharedFunctions)
+        local u35 = require(u2.Modules.Effects)
+        local u36 = u9:GetMouse()
+        local v37 = p31.SkipIfStudio
+        local u38 = u3.LocalPlayer
+        local u39 = u38.Character
+        local u40 = u39:FindFirstChild("HumanoidRootPart")
+        local u41 = u39:FindFirstChild("Humanoid")
+        local u42 = p31.Shape
+        local v43 = p31.CurrentPart
+        local u44 = {}
+        local u45 = {}
+        for _, v46 in pairs(v43:GetDescendants()) do
+            if v46:IsA("BasePart") then
+                v46.Transparency = 1
+            end
+        end
+        local u47 = u5.TouchEnabled
+        local u48 = u6:IsTenFootInterface() or shared.controllerpressed
+        local u49 = u11:FindFirstChild(u42):Clone()
+        u49.Parent = workspace.Effects
+        local u50 = u11:FindFirstChild(u42 .. "Outline"):Clone()
+        u50.Parent = workspace.Effects
+        local u51 = u11:FindFirstChild("Pick"):Clone()
+        u51.Parent = workspace.Effects
+        local u52 = u11:FindFirstChild("RedDot"):Clone()
+        u52.Parent = workspace.Effects
+        u52.Position = Vector3.new(0, -100, 0)
+        table.insert(u44, u52)
+        table.insert(u44, u49)
+        table.insert(u44, u50)
+        table.insert(u44, u51)
+        local u53 = p31.DalgonaGameTime
+        local u54 = u40.CFrame * u14[u51.Name]
+        u49:PivotTo(u40.CFrame * u14[u49.Name])
+        u50:PivotTo(u40.CFrame * u14[u50.Name])
+        u51.CFrame = u40.CFrame * u14[u51.Name]
+        local v55 = u51.Position.X
+        local v56 = u51.Position.Z
+        u51.Position = Vector3.new(v55, 95.85, v56)
+        u33.CameraType = Enum.CameraType.Scriptable
+        u1:Create(u33, TweenInfo.new(v37 and 0 or 2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
+            ["FieldOfView"] = 75,
+            ["CFrame"] = u40.CFrame * CFrame.new(-0.0252380371, -1.83222198, -1.96484983, 1, 0, 0, 0, 0.0871556923, 0.99619472, 0, -0.99619472, 0.0871556923)
+        }):Play()
+        local u57 = u49:GetPivot():toObjectSpace(u40.CFrame * CFrame.new(-0.0252380371, -1.83222198, -1.96484983, 1, 0, 0, 0, 0.0871556923, 0.99619472, 0, -0.99619472, 0.0871556923))
+        u1:Create(u12.Hotbar.Backpack, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
+            ["Position"] = UDim2.new(0, 0, 1.25, 0)
+        }):Play()
+        task.wait(v37 and 0 or 1.5)
+        u1:Create(u12.Hotbar.Backpack, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
+            ["Position"] = UDim2.new(0, 0, 1.25, 0)
+        }):Play()
+        local u58 = u2.UI.ProgressBar:Clone()
+        local v59 = u58.Position
+        u58.Position = v59 + UDim2.new(0, 0, 1, 0)
+        u58.Parent = u12.ImpactFrames
+        u1:Create(u58, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
+            ["Position"] = v59
+        }):Play()
+        local u60 = u2.Effects.Particles:FindFirstChild("SmokeParticleDalgona"):Clone()
+        u60.Parent = workspace.Terrain
+        table.insert(u44, u60)
+        u34.Invisible(u39, 1, true)
+        local u61 = false
+        local u62 = tick() - 5
+        local u63 = nil
+        local u64 = 0
+        local u65 = tick()
+        local u66 = {}
+        local u67 = nil
+        local function u71() --[[Anonymous function at line 300]]
+            --[[
+            Upvalues:
+                [1] = u45
+                [2] = u67
+                [3] = u66
+                [4] = u34
+                [5] = u44
+                [6] = u5
+                [7] = u1
+                [8] = u12
+                [9] = u58
+                [10] = u10
+                [11] = u33
+            --]]
+            for _, v68 in pairs(u45) do
+                if v68 then
+                    v68:Disconnect()
+                end
+            end
+            if u67 then
+                u67 = nil
+                game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
+            end
+            for _, v69 in pairs(u66) do
+                if v69 and v69.Parent then
+                    v69:SetAttribute("MadeInvisibleDalgonaClient", nil)
+                    u34.Invisible(v69, 0)
+                end
+            end
+            for _, v70 in pairs(u44) do
+                if v70 then
+                    v70:Destroy()
+                end
+            end
+            u5.MouseIconEnabled = true
+            u1:Create(u12.Hotbar.Backpack, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
+                ["Position"] = UDim2.new(0, 0, 0, 0)
+            }):Play()
+            if u58 then
+                u10:Fire(u58, 2)
+                u1:Create(u58, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
+                    ["Position"] = UDim2.new(u58.Position.X.Scale, 0, u58.Position.Y.Scale + 1, 0)
+                }):Play()
+            end
+            u33.CameraType = Enum.CameraType.Custom
+        end
+        task.delay(3, function() --[[Anonymous function at line 340]]
+            --[[
+            Upvalues:
+                [1] = u33
+                [2] = u44
+                [3] = u5
+                [4] = u1
+                [5] = u12
+            --]]
+            if u33.CameraType == Enum.CameraType.Scriptable and (#u44 >= 1 and not u5.MouseIconEnabled) then
+                u1:Create(u12.Hotbar.Backpack, TweenInfo.new(1.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
+                    ["Position"] = UDim2.new(0, 0, 1.25, 0)
+                }):Play()
+            end
+        end)
+        local v75 = u5.InputBegan:Connect(function(p72, p73) --[[Anonymous function at line 346]]
+            --[[
+            Upvalues:
+                [1] = u62
+                [2] = u61
+                [3] = u63
+                [4] = u64
+                [5] = u34
+                [6] = u52
+                [7] = u1
+                [8] = u65
+            --]]
+            if p73 then
+                return
+            elseif (p72.UserInputType == Enum.UserInputType.MouseButton1 or (p72.UserInputType == Enum.UserInputType.Touch or p72.KeyCode == Enum.KeyCode.ButtonX)) and tick() - u62 >= 0.5 then
+                u61 = true
+                u63 = nil
+                u64 = -0.05
+                u34.PlaySound(workspace.Sounds, "rbxassetid://125498588747260", 0.2)
+                if u52 and u52.Parent then
+                    local v74 = u1:Create(u52, TweenInfo.new(0.1, Enum.EasingStyle.Back), {
+                        ["Transparency"] = 1
+                    })
+                    v74:Play()
+                    v74:Destroy()
+                end
+                u65 = tick()
+            end
+        end)
+        u5.InputEnded:Connect(function(p76, _) --[[Anonymous function at line 374]]
+            --[[
+            Upvalues:
+                [1] = u61
+                [2] = u34
+                [3] = u64
+            --]]
+            if p76.UserInputType == Enum.UserInputType.MouseButton1 or (p76.UserInputType == Enum.UserInputType.Touch or p76.KeyCode == Enum.KeyCode.ButtonX) then
+                if u61 then
+                    u34.PlaySound(workspace.Sounds, "rbxassetid://113009709054282", 0.2)
+                end
+                u61 = false
+                u64 = 0
+            end
+        end)
+        local u77 = Vector2.new(0, 0)
+        local v79 = u5.InputChanged:Connect(function(p78) --[[Anonymous function at line 388]]
+            --[[
+            Upvalues:
+                [1] = u77
+            --]]
+            if p78.UserInputType == Enum.UserInputType.Touch or p78.UserInputType == Enum.UserInputType.MouseMovement then
+                u77 = p78.Position
+            end
+        end)
+        local function u88() --[[Anonymous function at line 394]]
+            --[[
+            Upvalues:
+                [1] = u41
+                [2] = u33
+            --]]
+            local v80 = u41.MoveDirection
+            if v80 == Vector3.new(0, 0, 0) then
+                return Vector3.new(0, 0, 0)
+            end
+            local v81 = u33.CFrame.LookVector
+            local v82 = v81.X
+            local v83 = v81.Z
+            local v84 = Vector3.new(v82, 0, v83).Unit
+            local v85 = v80.X
+            local v86 = v80.Z
+            local v87 = Vector3.new(v85, 0, v86).Unit
+            return CFrame.lookAt(Vector3.new(0, 0, 0), v84):VectorToObjectSpace(v87)
+        end
+        u5.MouseIconEnabled = false
+        local u89 = nil
+        local u90 = nil
+        local u91 = nil
+        local u92 = nil
+        local u93 = nil
+        local u94 = nil
+        local u95 = nil
+        local u96 = 0
+        local u97 = nil
+        local u98 = nil
+        local u99, u100
+        if u48 then
+            u99 = nil
+            u100 = nil
+        else
+            local v101
+            u99, u100, v101 = u30(u45, u44, u47)
+            u51:Destroy()
+            u52:Destroy()
+        end
+        local v102 = {
+            ["Umbrella"] = {
+                ["HBRadius"] = 0.02625,
+                ["HBRadiusFail"] = 0.03
+            },
+            ["Star"] = {
+                ["HBRadius"] = 0.03,
+                ["HBRadiusFail"] = 0.043750000000000004
+            },
+            ["Triangle"] = {
+                ["HBRadius"] = 0.03375,
+                ["HBRadiusFail"] = 0.048125
+            },
+            ["Circle"] = {
+                ["HBRadius"] = 0.03,
+                ["HBRadiusFail"] = 0.06875
+            },
+            ["SackBoy"] = {
+                ["HBRadius"] = 0.0195,
+                ["HBRadiusFail"] = 0.026250000000000002
+            },
+            ["MonaLisa"] = {
+                ["HBRadius"] = 0.014,
+                ["HBRadiusFail"] = 0.022
+            }
+        }
+        local u103 = v102[u42].HBRadius
+        local u104 = v102[u42].HBRadiusFail
+        if u48 then
+            u103 = u103 * 1.45
+            u104 = u104 * 1.75
+        elseif u5.TouchEnabled then
+            u103 = u103 * 1.25
+            u104 = u104 * 1.35
+        end
+        local u105 = #u50:GetChildren()
+        local u106 = 0
+        local u107 = 0
+        local u108 = 0
+        local u109 = nil
+        if u100 then
+            local u110 = u100:FindFirstChild("PickModel"):FindFirstChild("Pick")
+        end
+        local u111
+        if u110 then
+            u111 = u110.CFrame
+        else
+            u111 = u110
+        end
+        local u112
+        if u110 then
+            u112 = u110.CFrame * CFrame.new(2, -1.5, 1) * CFrame.Angles(0.08726646259971647, 0, 0)
+        else
+            u112 = u110
+        end
+        local u113
+        if u110 then
+            u113 = u110.CFrame * CFrame.new(-2, 1.5, -1.5) * CFrame.Angles(-0.1308996938995747, 0, 0)
+        else
+            u113 = u110
+        end
+        local u114 = p31.NewRem
+        local u115 = tick()
+        local v116 = #u50:GetChildren() * 0.05
+        local u117 = math.ceil(v116)
+        local u118 = #u50:GetChildren() >= 85 and 5.5 or false
+        local u119 = u63
+        local u120 = u64
+        local u121 = u65
+        local u122 = u62
+        local u123 = u61
+        local u124 = nil
+        local u125 = nil
+        for v126 = 1, 3 do
+            local v127 = u11:FindFirstChild(u42 .. "Crack" .. v126)
+            if v127 then
+                local v128 = v127:Clone()
+                v128.Parent = workspace.Effects
+                v128:PivotTo(u49:GetPivot() + Vector3.new(0, -2, 0))
+                table.insert(u44, v128)
+                if v126 == 3 then
+                    u125 = v128
+                end
+            end
+        end
+        local u129 = nil
+        u129 = workspace:GetAttributeChangedSignal("CurrentGameTime"):Connect(function() --[[Anonymous function at line 513]]
+            --[[
+            Upvalues:
+                [1] = u53
+                [2] = u129
+                [3] = u124
+                [4] = u11
+                [5] = u50
+                [6] = u44
+            --]]
+            if workspace:GetAttribute("CurrentGameTime") and workspace:GetAttribute("CurrentGameTime") <= u53 / 2 then
+                u129:Disconnect()
+                u124 = u11:FindFirstChild("Highlight"):Clone()
+                u124.Parent = u50
+                local v130 = u44
+                local v131 = u124
+                table.insert(v130, v131)
+            end
+        end)
+        local u132 = nil
+        local u133 = CFrame.new(-0.0252380371, -1.83222198, -1.96484983, 1, 0, 0, 0, 0.0871556923, 0.99619472, 0, -0.99619472, 0.0871556923)
+        local u134 = nil
+        local u135 = nil
+        local u136 = nil
+        local function u153() --[[Anonymous function at line 530]]
+            --[[
+            Upvalues:
+                [1] = u132
+                [2] = u135
+                [3] = u34
+                [4] = u51
+                [5] = u1
+                [6] = u98
+                [7] = u90
+                [8] = u52
+                [9] = u49
+                [10] = u99
+                [11] = u33
+                [12] = u40
+                [13] = u39
+                [14] = u58
+                [15] = u10
+                [16] = u2
+                [17] = u35
+                [18] = u38
+                [19] = u32
+                [20] = u71
+            --]]
+            if not u132 then
+                u132 = true
+                u135 = true
+                u34.PlaySound(workspace.Sounds, "rbxassetid://70595188193033", 0.5)
+                if u51 and u51.Parent then
+                    u1:Create(u51, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                        ["Transparency"] = 1
+                    }):Play()
+                end
+                if u98 then
+                    for _, v137 in pairs(u98:GetDescendants()) do
+                        if v137:IsA("ParticleEmitter") then
+                            v137.Enabled = false
+                        end
+                    end
+                end
+                if u90 then
+                    for _, v138 in pairs(u90:GetDescendants()) do
+                        if v138:IsA("BasePart") then
+                            u1:Create(v138, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                                ["Transparency"] = 1
+                            }):Play()
+                        end
+                    end
+                end
+                if u52 and u52.Parent then
+                    u1:Create(u52, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                        ["Transparency"] = 1
+                    }):Play()
+                end
+                for _, v139 in pairs(u49:GetChildren()) do
+                    if v139.Name == "DalgonaClickPart" and v139:IsA("BasePart") then
+                        u1:Create(v139, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                            ["Transparency"] = 1
+                        }):Play()
+                    end
+                end
+                if u99 then
+                    for _, v140 in pairs(u99:GetDescendants()) do
+                        if v140:IsA("BasePart") then
+                            u1:Create(v140, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                                ["Transparency"] = 1
+                            }):Play()
+                        end
+                    end
+                end
+                local v141 = CFrame.new(0, 0, 0)
+                u1:Create(u33, TweenInfo.new(0.75, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                    ["CFrame"] = u40.CFrame * CFrame.new(-0.004, -0.192, -1.3, 1, -0.021, 0.005, 0.003, 0.375, 0.927, -0.021, -0.927, 0.375) * v141
+                }):Play()
+                local v142 = {
+                    "Right Arm",
+                    "Left Arm",
+                    "Right Leg",
+                    "Left Leg",
+                    "Torso"
+                }
+                for _, v143 in pairs(v142) do
+                    local v144 = u39:FindFirstChild(v143)
+                    if v144 then
+                        u1:Create(v144, TweenInfo.new(0.5), {
+                            ["Transparency"] = 0
+                        }):Play()
+                    end
+                end
+                if u58 then
+                    u10:Fire(u58, 2)
+                    u1:Create(u58, TweenInfo.new(3, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {
+                        ["Position"] = UDim2.new(u58.Position.X.Scale, 0, u58.Position.Y.Scale + 1, 0)
+                    }):Play()
+                end
+                local v145 = u2.Effects.Games.Dalgona.Cutscenes.RevolverGuard:Clone()
+                v145.Parent = workspace.Effects
+                v145.HumanoidRootPart.CFrame = u40.CFrame * CFrame.new(0, 0, -6) * CFrame.Angles(0, 3.141592653589793, 0)
+                u10:Fire(v145, 5)
+                local v146 = v145:FindFirstChild("Humanoid"):FindFirstChild("Animator"):LoadAnimation(u2.Animations.Games.Dalgona.GuardShoot)
+                v146:Play(0)
+                v146:AdjustSpeed(0)
+                task.wait(0.75)
+                v146:AdjustSpeed(1)
+                local v147 = u35.CutsceneMove
+                local v148 = {
+                    ["Target"] = u38.Character:FindFirstChild("HumanoidRootPart"),
+                    ["Path"] = "DalgonaDeath_Player",
+                    ["CamOffset"] = v141,
+                    ["ExtraTBL"] = {
+                        ["UseLerp"] = 0.1,
+                        ["FreezeAtFinalFrame"] = 1.5
+                    }
+                }
+                v147(v148)
+                task.wait(2.16)
+                for _, v149 in pairs(v142) do
+                    local v150 = u39:FindFirstChild(v149)
+                    if v150 then
+                        v150.Transparency = 1
+                    end
+                end
+                u32.MauioShake({
+                    ["Length"] = 0.45,
+                    ["Intensity"] = 1,
+                    ["TweenSpeed"] = 0.015,
+                    ["AxisMultipliers"] = Vector3.new(1, 1, 1),
+                    ["FadeStyle"] = "inQuad",
+                    ["PositionStyle"] = "inCubic"
+                })
+                local v151 = {
+                    ["Properties"] = {
+                        ["DiedVolume"] = 1,
+                        ["SpectateDelay"] = 2.5
+                    }
+                }
+                u38:FindFirstChild("OtherBD"):Fire("DiedProperties", v151)
+                local v152 = {
+                    ["CFrame"] = CFrame.lookAt(u40.Position + Vector3.new(0, 9, 0), u40.Position) * CFrame.Angles(0, 0, 1.5707963267948966)
+                }
+                u1:Create(u33, TweenInfo.new(0.45, Enum.EasingStyle.Quad), v152):Play()
+                u34.Invisible(u39, 0, true)
+                u32.BlackCameraEffect({
+                    ["WaitBeforeGoingBack"] = 2.25
+                })
+                task.wait(0.75)
+                u71()
+                u33.CameraType = Enum.CameraType.Scriptable
+            end
+        end
+        local u154 = tick()
+        local u155 = nil
+        local function u167() --[[Anonymous function at line 727]]
+            --[[
+            Upvalues:
+                [1] = u155
+                [2] = u123
+                [3] = u122
+                [4] = u108
+                [5] = u34
+                [6] = u35
+                [7] = u32
+                [8] = u8
+                [9] = u114
+                [10] = u42
+                [11] = u38
+                [12] = u125
+                [13] = u49
+                [14] = u15
+                [15] = u1
+                [16] = u50
+                [17] = u52
+                [18] = u109
+                [19] = u134
+                [20] = u11
+            --]]
+            u155 = true
+            task.delay(0.2, function() --[[Anonymous function at line 730]]
+                --[[
+                Upvalues:
+                    [1] = u155
+                --]]
+                u155 = nil
+            end)
+            u123 = false
+            u122 = tick()
+            u108 = u108 + 1
+            if u108 == 2 then
+                u34.PlaySound(workspace.Sounds, "rbxassetid://78163886222459", 0.5)
+                task.spawn(function() --[[Anonymous function at line 743]]
+                    --[[
+                    Upvalues:
+                        [1] = u35
+                    --]]
+                    u35.AnnouncementTween({
+                        ["AnnouncementOneLine"] = true,
+                        ["FasterTween"] = true,
+                        ["DisplayTime"] = 4,
+                        ["ShakeText"] = true,
+                        ["AnnouncementDisplayText"] = "ONLY ONE MORE CHANCE."
+                    })
+                end)
+            elseif u108 == 1 then
+                task.spawn(function() --[[Anonymous function at line 747]]
+                    --[[
+                    Upvalues:
+                        [1] = u35
+                    --]]
+                    u35.ScreenHighlight({
+                        ["Color"] = Color3.fromRGB(255, 0, 0),
+                        ["TweenTimeBack"] = 0.5,
+                        ["ImageTransparency"] = 0.4
+                    })
+                end)
+            end
+            u32.MauioShake({
+                ["Length"] = 0.45,
+                ["Intensity"] = u108 >= 3 and 0.25 or 0.1,
+                ["TweenSpeed"] = 0.075,
+                ["AxisMultipliers"] = Vector3.new(1, 0.15, 1),
+                ["FadeStyle"] = "inQuad",
+                ["PositionStyle"] = "inCubic"
+            })
+            local v156 = u8:NextInteger(1, 4)
+            local v157 = v156 == 1 and "rbxassetid://95708089383752" or (v156 == 2 and "rbxassetid://120804953110091" or (v156 == 3 and "rbxassetid://103295882653704" or "rbxassetid://127889132719108"))
+            u34.PlaySound(workspace.Sounds, v157, 0.5)
+            u114:FireServer({
+                ["ShapeName"] = u42,
+                ["CrackAmount"] = u108,
+                ["FullyCracked"] = u108 >= 3
+            })
+            if u108 >= 3 then
+                u34.CreateFolder(u38, "RecentGameStartedMessage", 0.01)
+                u34.PlaySound(workspace.Sounds, "rbxassetid://99207455467527", 0.75)
+                if u125 then
+                    u125:PivotTo(u49:GetPivot())
+                    for _, v158 in pairs(u125:GetChildren()) do
+                        if v158:IsA("BasePart") and v158.Name ~= "outer" then
+                            local v159 = v158.Position.X
+                            local v160 = u49.outer.Position.Y
+                            local v161 = v158.Position.Z
+                            v158.Position = Vector3.new(v159, v160, v161)
+                            local v162 = u8:NextNumber(1, 2)
+                            local v163 = u15[v158.Name]
+                            local v164 = CFrame.new(v163.Position * v162) * v163 - v163.Position
+                            u1:Create(v158, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                                ["CFrame"] = v158.CFrame * v164
+                            }):Play()
+                        end
+                    end
+                    for _, v165 in pairs(u49:GetChildren()) do
+                        if v165:IsA("BasePart") then
+                            v165.Transparency = 1
+                        end
+                    end
+                    for _, v166 in pairs(u50:GetChildren()) do
+                        if v166:IsA("BasePart") then
+                            v166.Transparency = 1
+                        end
+                    end
+                    if u52 and u52.Parent then
+                        u1:Create(u52, TweenInfo.new(0.01, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                            ["Transparency"] = 1
+                        }):Play()
+                    end
+                end
+                u109 = true
+                task.delay(6.5, function() --[[Anonymous function at line 810]]
+                    --[[
+                    Upvalues:
+                        [1] = u134
+                    --]]
+                    u134:Disconnect()
+                end)
+            else
+                u49.outer.SurfaceAppearance:Destroy()
+                u49.shape.SurfaceAppearance:Destroy()
+                u11:FindFirstChild(u42 .. "Crack" .. u108).outer.SurfaceAppearance:Clone().Parent = u49.outer
+                u11:FindFirstChild(u42 .. "Crack" .. u108).shape.SurfaceAppearance:Clone().Parent = u49.shape
+            end
+        end
+        local u168 = tick()
+        if u48 then
+            u67 = true
+            game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
+        end
+        local u169 = nil
+        local function u174() --[[Anonymous function at line 832]]
+            --[[
+            Upvalues:
+                [1] = u95
+                [2] = u90
+                [3] = u94
+                [4] = u34
+                [5] = u96
+                [6] = u97
+                [7] = u44
+                [8] = u98
+                [9] = u93
+            --]]
+            if not u95 and u90 then
+                u95 = true
+                if u94 then
+                    u94:Stop()
+                end
+                u34.PlaySound(workspace.Sounds, "rbxassetid://117064001994335", 0.3)
+                u96 = u96 + 1
+                local u170 = u96
+                task.delay(0.7, function() --[[Anonymous function at line 845]]
+                    --[[
+                    Upvalues:
+                        [1] = u96
+                        [2] = u170
+                        [3] = u95
+                        [4] = u97
+                        [5] = u34
+                        [6] = u44
+                        [7] = u98
+                    --]]
+                    if u96 == u170 and u95 then
+                        u97 = u34.PlaySound(workspace.Sounds, "rbxassetid://131598399686068", 0.3, {
+                            ["Looped"] = true
+                        })
+                        local v171 = u44
+                        local v172 = u97
+                        table.insert(v171, v172)
+                        if u98 then
+                            for _, v173 in pairs(u98:GetDescendants()) do
+                                if v173 and v173.ClassName == "ParticleEmitter" then
+                                    v173.Enabled = true
+                                    v173:Emit(7)
+                                end
+                            end
+                        end
+                    end
+                end)
+                u93:Play()
+            end
+        end
+        local function u177() --[[Anonymous function at line 867]]
+            --[[
+            Upvalues:
+                [1] = u95
+                [2] = u90
+                [3] = u98
+                [4] = u169
+                [5] = u93
+                [6] = u94
+                [7] = u96
+                [8] = u97
+                [9] = u10
+                [10] = u1
+                [11] = u34
+            --]]
+            if u95 and u90 then
+                u95 = nil
+                if u98 then
+                    for _, v175 in pairs(u98:GetDescendants()) do
+                        if v175 and v175.ClassName == "ParticleEmitter" then
+                            v175.Enabled = false
+                        end
+                    end
+                end
+                u169 = nil
+                if u93 then
+                    u93:Stop()
+                end
+                u94:Play()
+                u96 = u96 + 1
+                local u176 = u96
+                if u97 then
+                    u10:Fire(u97, 1)
+                    u1:Create(u97, TweenInfo.new(0.75), {
+                        ["Volume"] = 0
+                    }):Play()
+                end
+                u34.PlaySound(workspace.Sounds, "rbxassetid://125613426382488", 0.5)
+                task.delay(1.5, function() --[[Anonymous function at line 898]]
+                    --[[
+                    Upvalues:
+                        [1] = u96
+                        [2] = u176
+                        [3] = u95
+                        [4] = u94
+                    --]]
+                    if u96 == u176 and not u95 then
+                        u94:AdjustSpeed(0)
+                    end
+                end)
+            end
+        end
+        u134 = u4.RenderStepped:Connect(function() --[[Anonymous function at line 906]]
+            --[[
+            Upvalues:
+                [1] = u135
+                [2] = u33
+                [3] = u133
+                [4] = u49
+                [5] = u57
+                [6] = u89
+                [7] = u38
+                [8] = u90
+                [9] = u91
+                [10] = u92
+                [11] = u24
+                [12] = u45
+                [13] = u44
+                [14] = u47
+                [15] = u48
+                [16] = u93
+                [17] = u2
+                [18] = u94
+                [19] = u98
+                [20] = u96
+                [21] = u95
+                [22] = u168
+                [23] = u66
+                [24] = u39
+                [25] = u40
+                [26] = u34
+                [27] = u124
+                [28] = u115
+                [29] = u1
+                [30] = u107
+                [31] = u106
+                [32] = u105
+                [33] = u117
+                [34] = u58
+                [35] = u136
+                [36] = u108
+                [37] = u167
+                [38] = u109
+                [39] = u13
+                [40] = u154
+                [41] = u114
+                [42] = u50
+                [43] = u60
+                [44] = u10
+                [45] = u35
+                [46] = u118
+                [47] = u8
+                [48] = u51
+                [49] = u52
+                [50] = u99
+                [51] = u71
+                [52] = u121
+                [53] = u123
+                [54] = u119
+                [55] = u5
+                [56] = u100
+                [57] = u3
+                [58] = u6
+                [59] = u122
+                [60] = u110
+                [61] = u113
+                [62] = u177
+                [63] = u112
+                [64] = u174
+                [65] = u111
+                [66] = u88
+                [67] = u120
+                [68] = u36
+                [69] = u54
+                [70] = u169
+                [71] = u103
+                [72] = u104
+                [73] = u155
+            --]]
+            if not u135 then
+                local v178 = u33:GetAttribute("MauioShakeOffset") or Vector3.new(0, 0, 0)
+                local v179 = u133
+                if typeof(v179) == "CFrame" then
+                    u33.CFrame = u49:GetPivot() * u57 + v178
+                else
+                    u33.CFrame = u33.CFrame:Lerp(u133.CFrame * CFrame.new(0, 0, 0.05) + v178, 1)
+                end
+            end
+            if not u89 and (u38 and u38:GetAttribute("HasLighter")) then
+                u89 = true
+                local v180, v181, v182 = u24(u45, u44, u47, u48)
+                u90 = v180
+                u91 = v181
+                u92 = v182
+                u93 = u90:FindFirstChild("AnimationController"):FindFirstChild("Animator"):LoadAnimation(u2.Animations.LighterAnims:FindFirstChild("LighterOpen"))
+                u94 = u90:FindFirstChild("AnimationController"):FindFirstChild("Animator"):LoadAnimation(u2.Animations.LighterAnims:FindFirstChild("LighterClose"))
+                u94:Play(0)
+                u98 = u2.Effects.Parts.LighterFireParticle:Clone()
+                u98.Parent = workspace.Effects
+                u98.Anchored = true
+                local v183 = u44
+                local v184 = u98
+                table.insert(v183, v184)
+                u96 = u96 + 1
+                local u185 = u96
+                task.delay(1.5, function() --[[Anonymous function at line 941]]
+                    --[[
+                    Upvalues:
+                        [1] = u96
+                        [2] = u185
+                        [3] = u95
+                        [4] = u94
+                    --]]
+                    if u96 == u185 and not u95 then
+                        u94:AdjustSpeed(0)
+                    end
+                end)
+            end
+            if tick() - u168 >= 0.5 then
+                for _, v186 in pairs(workspace.Live:GetChildren()) do
+                    if not table.find(u66, v186) and (v186 and (v186 ~= u39 and (v186:FindFirstChild("HumanoidRootPart") and (v186:FindFirstChild("HumanoidRootPart").Position - u40.Position).Magnitude <= 7))) then
+                        local v187 = u66
+                        table.insert(v187, v186)
+                        v186:SetAttribute("MadeInvisibleDalgonaClient", true)
+                        u34.Invisible(v186, 1)
+                    end
+                end
+            end
+            if u124 and (u124.Parent and tick() - u115 >= 10) then
+                u115 = tick()
+                u34.PlaySound(workspace.Sounds, "rbxassetid://129262580026218", 0.3)
+                u1:Create(u124, TweenInfo.new(1, Enum.EasingStyle.Quad), {
+                    ["FillTransparency"] = 0.5,
+                    ["OutlineTransparency"] = 0
+                }):Play()
+                task.delay(2, function() --[[Anonymous function at line 967]]
+                    --[[
+                    Upvalues:
+                        [1] = u124
+                        [2] = u1
+                    --]]
+                    if u124 and u124.Parent then
+                        u1:Create(u124, TweenInfo.new(1, Enum.EasingStyle.Quad), {
+                            ["FillTransparency"] = 1,
+                            ["OutlineTransparency"] = 1
+                        }):Play()
+                    end
+                end)
+            end
+            if u107 ~= u106 then
+                u107 = u106
+                local v188 = u106 / (u105 - u117)
+                local v189 = math.clamp(v188, 0, 1)
+                local v190 = v189 > 1 and 1 or v189
+                local v191 = u1:Create(u58.Holder.Fill, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                    ["Size"] = UDim2.new(v190, 0, 1, 0)
+                })
+                v191:Play()
+                v191:Destroy()
+                local v192 = u106 / (u105 - u117) * 100
+                local v193 = math.floor(v192)
+                local v194 = v193 > 100 and 100 or v193
+                u58.Progress.Text = v194 .. "%"
+                u58.Progress.ProgressShadow.Text = v194 .. "%"
+            end
+            if (not workspace:GetAttribute("CurrentGameTime") or workspace:GetAttribute("CurrentGameTime") and workspace:GetAttribute("CurrentGameTime") <= 0) and not u136 then
+                u136 = true
+                warn("Failed dalgona didnt compelte in time")
+                for _ = 1, 10 do
+                    if u108 < 3 then
+                        u167()
+                    end
+                end
+                u34.CreateFolder(u38, "RecentGameStartedMessage", 0.01)
+            end
+            if (u106 >= u105 - u117 and not u109 or u13 and tick() - u154 >= 1.5) and not u136 then
+                u136 = true
+                u109 = true
+                u114:FireServer({
+                    ["Completed"] = true
+                })
+                local v195 = 0
+                for _, v196 in ipairs(u50:GetChildren()) do
+                    if v196:IsA("BasePart") then
+                        local v197 = u60:Clone()
+                        v197.Parent = u60.Parent
+                        u10:Fire(v197, 2)
+                        v197.WorldCFrame = CFrame.new(v196.Position) + Vector3.new(0, 0.025, 0)
+                        local v198 = {
+                            ["attachmentorparticle"] = v197,
+                            ["tbloptions"] = {
+                                ["LessEmit"] = u118,
+                                ["DontCloneOnClient"] = true
+                            }
+                        }
+                        u35.EmitParticle(v198)
+                        v196.Color = Color3.fromRGB(0, 255, 0)
+                        v196.Transparency = 0
+                        v196.CastShadow = false
+                        v196.Name = "DalgonaClickPart"
+                        v196.Material = Enum.Material.Neon
+                        v196.Position = v196.Position + Vector3.new(0, 0.005, 0)
+                        v196.Parent = u49
+                        u106 = u106 + 1
+                        local v199 = u8:NextInteger(1, 3)
+                        local v200 = v199 == 1 and "rbxassetid://130366178077319" or (v199 == 2 and "rbxassetid://107977713122474" or (v199 == 3 and "rbxassetid://74545150600683" or false))
+                        if v195 <= 5 then
+                            v195 = v195 + 1
+                            u34.PlaySound(workspace.Sounds, v200, 0.3)
+                        end
+                    end
+                end
+                u34.CreateFolder(u38, "RecentGameStartedMessage", 0.01)
+                task.delay(0.5, function() --[[Anonymous function at line 659]]
+                    --[[
+                    Upvalues:
+                        [1] = u135
+                        [2] = u1
+                        [3] = u49
+                        [4] = u33
+                        [5] = u51
+                        [6] = u98
+                        [7] = u90
+                        [8] = u52
+                        [9] = u34
+                        [10] = u39
+                        [11] = u99
+                        [12] = u40
+                        [13] = u71
+                    --]]
+                    u135 = true
+                    u1:Create(u49.shape, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                        ["Position"] = u49.shape.Position + Vector3.new(0, 0.5, 0)
+                    }):Play()
+                    for _, v201 in pairs(u49:GetChildren()) do
+                        if v201.Name == "DalgonaClickPart" and v201:IsA("BasePart") then
+                            u1:Create(v201, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                                ["Position"] = v201.Position + Vector3.new(0, 0.5, 0)
+                            }):Play()
+                        end
+                    end
+                    u1:Create(u33, TweenInfo.new(3, Enum.EasingStyle.Quad), {
+                        ["CFrame"] = u33.CFrame * CFrame.new(0, -0.85, 0.4) * CFrame.Angles(0.6981317007977318, 0, 0)
+                    }):Play()
+                    if u51 and u51.Parent then
+                        u1:Create(u51, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                            ["Transparency"] = 1
+                        }):Play()
+                    end
+                    if u98 then
+                        for _, v202 in pairs(u98:GetDescendants()) do
+                            if v202:IsA("ParticleEmitter") then
+                                v202.Enabled = false
+                            end
+                        end
+                    end
+                    if u90 then
+                        for _, v203 in pairs(u90:GetDescendants()) do
+                            if v203:IsA("BasePart") then
+                                u1:Create(v203, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                                    ["Transparency"] = 1
+                                }):Play()
+                            end
+                        end
+                    end
+                    if u52 and u52.Parent then
+                        u1:Create(u52, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                            ["Transparency"] = 1
+                        }):Play()
+                    end
+                    task.wait(1)
+                    for _, v204 in pairs(u49:GetChildren()) do
+                        if v204.Name == "DalgonaClickPart" and v204:IsA("BasePart") then
+                            u1:Create(v204, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                                ["Transparency"] = 1
+                            }):Play()
+                        end
+                    end
+                    task.wait(2)
+                    u34.Invisible(u39, 0, true)
+                    if u99 then
+                        for _, v205 in pairs(u99:GetDescendants()) do
+                            if v205:IsA("BasePart") then
+                                u1:Create(v205, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                                    ["Transparency"] = 1
+                                }):Play()
+                            end
+                        end
+                    end
+                    u1:Create(u33, TweenInfo.new(2, Enum.EasingStyle.Quad), {
+                        ["CFrame"] = u40.CFrame * CFrame.new(0.0841674805, 8.45438766, 6.69675446, 0.999918401, -0.00898250192, 0.00907994807, 3.31699681e-8, 0.710912943, 0.703280032, -0.0127722733, -0.703222632, 0.710854948)
+                    }):Play()
+                    task.wait(2)
+                    u71()
+                end)
+            end
+            if u52 and (u52.Parent and (tick() - u121 >= 0.6 and not (u123 or u119))) then
+                u121 = tick()
+                u119 = true
+                local v206 = u1:Create(u52, TweenInfo.new(0.5, Enum.EasingStyle.Quad), {
+                    ["Transparency"] = 0
+                })
+                v206:Play()
+                v206:Destroy()
+            end
+            if u99 then
+                local v207 = u5:GetMouseLocation()
+                u100.Position = u100.Position:Lerp(UDim2.new(0, v207.X, 0, v207.Y), 0.5)
+                if u91 then
+                    u91.Position = u91.Position:Lerp(UDim2.new(0, v207.X, 0, v207.Y), 0.5)
+                end
+                if u98 and u90 then
+                    u98.CFrame = (function(p208) --[[Function name: getPlacementCFrame, line 1078]]
+                        --[[
+                        Upvalues:
+                            [1] = u3
+                            [2] = u6
+                        --]]
+                        local v209 = u3.LocalPlayer:GetMouse()
+                        local v210 = workspace.CurrentCamera
+                        local v211 = Vector2.new(v209.X, v209.Y) + u6:GetGuiInset()
+                        local v212 = v210:ViewportPointToRay(v211.X, v211.Y)
+                        local v213 = v212.Origin + v212.Direction * p208
+                        return CFrame.new(v213)
+                    end)(0.8)
+                end
+                if tick() - u122 < 0.2 then
+                    u110.CFrame = u110.CFrame:Lerp(u113, 0.25)
+                    u177()
+                elseif u123 and not u109 then
+                    u110.CFrame = u110.CFrame:Lerp(u112, 0.25)
+                    u174()
+                else
+                    u110.CFrame = u110.CFrame:Lerp(u111, 0.25)
+                    u177()
+                end
+            elseif u48 and (u51 and u51.Parent) then
+                local v214 = u88()
+                local v215 = u51.Position.X
+                local v216 = u120 + 95.85
+                local v217 = u51.Position.Z
+                local v218 = Vector3.new(v215, v216, v217)
+                local v219 = u51
+                local v220 = u51.Position
+                local v221 = v214.X
+                local v222 = u120
+                local v223 = v214.Z
+                v219.Position = v220:Lerp(v218 + Vector3.new(v221, v222, v223) * 0.0055, 0.5)
+                if u123 and not u109 then
+                    u174()
+                else
+                    u177()
+                end
+                if u90 then
+                    u90:PivotTo(u51.CFrame * CFrame.new(-0.0684509277, -0.137245178, 0.00375366211, 0.547969759, -0.29673329, -0.782101333, -0.82782042, -0.326714009, -0.456045359, -0.120198995, 0.897333562, -0.424670935))
+                end
+                if u98 then
+                    u98.CFrame = u90:GetPivot() * CFrame.new(0.0446166992, -0.013092041, -0.048614502, 0.515947163, -0.841202855, -0.161807388, -0.448753268, -0.426317722, 0.785413265, -0.729672849, -0.332620978, -0.59744966)
+                end
+            elseif u51 and u51.Parent then
+                local v224 = u33:ViewportPointToRay(u36.X, u36.Y)
+                local v225 = v224.Origin
+                local v226 = v224.Direction
+                local v227 = v226.Y
+                if math.abs(v227) > 0.0001 then
+                    local v228 = (95.85 - v225.Y) / v226.Y
+                    if v228 > 0 then
+                        local v229 = v225 + v226 * v228
+                        local v230 = u33.CFrame.LookVector.X
+                        local v231 = u33.CFrame.LookVector.Z
+                        local v232 = Vector3.new(v230, 0, v231).Unit
+                        local v233 = u33.CFrame.RightVector.X
+                        local v234 = u33.CFrame.RightVector.Z
+                        local v235 = v229 + Vector3.new(v233, 0, v234).Unit * 0 + v232 * -0.075
+                        local v236 = v235.X
+                        local v237 = v235.Y + u120
+                        local v238 = v235.Z
+                        local v239 = Vector3.new(v236, v237, v238)
+                        u51.Position = u51.Position:Lerp(v239, 0.5)
+                    end
+                end
+            end
+            local v240, v241
+            if u51 and u51.Parent then
+                local v242 = u51.Position.X - u54.Position.X
+                local v243 = math.abs(v242)
+                local v244 = (math.clamp(v243, 0, 10) / 0.5) ^ 0.5
+                local v245 = math.clamp(v244, 0, 1) * 10
+                local v246 = math.clamp(v245, 1, 10)
+                if u51.Position.X > u54.Position.X then
+                    v246 = -v246
+                end
+                local v247 = u51.Position.Z - u54.Position.Z
+                local v248 = math.abs(v247)
+                local v249 = (math.clamp(v248, 0, 15) / 0.15) ^ 0.5
+                local v250 = math.clamp(v249, 0, 1) * 10
+                local v251 = math.clamp(v250, 1, 10)
+                if u51.Position.Z > u54.Position.Z then
+                    v251 = -v251
+                end
+                local v252 = v251 < 9 and v251 > -9 and -9 or v251
+                local v253 = u51
+                local v254 = u51.Orientation
+                local v255 = u51.Orientation.Z
+                v253.Orientation = v254:Lerp(Vector3.new(v246, v252, v255), 0.1)
+                v240 = u33.CFrame.Position
+                v241 = (u51.Attachment.WorldCFrame.Position + Vector3.new(0, 0.05, 0) - v240).unit * 100
+                local v256 = RaycastParams.new()
+                v256.FilterDescendantsInstances = { u50, u49 }
+                v256.FilterType = Enum.RaycastFilterType.Include
+                local v257 = workspace:Raycast(v240, v241, v256)
+                if v257 then
+                    local v258 = u52
+                    local v259 = v257.Position.X
+                    local v260 = v257.Position.Z
+                    v258.Position = Vector3.new(v259, 95.627, v260)
+                end
+            else
+                v240 = u33.CFrame.Position
+                v241 = (u36.Hit.Position - v240).unit * 100
+            end
+            if u123 and (u49 and not u109) then
+                local v261 = RaycastParams.new()
+                v261.FilterDescendantsInstances = { u50, u49 }
+                v261.FilterType = Enum.RaycastFilterType.Include
+                local v262 = workspace:Raycast(v240, v241, v261)
+                local v263 = {}
+                local v264 = {}
+                local v265 = false
+                if v262 then
+                    if u93 and u90 then
+                        if u169 then
+                            u169 = u169 * 1.1
+                            if u169 > u103 * 300 then
+                                u169 = u103 * 300
+                            end
+                        else
+                            u169 = u103
+                        end
+                        local v266 = u103 * u169
+                        for _, v267 in ipairs(u50:GetChildren()) do
+                            if v267:IsA("BasePart") then
+                                local v268 = v267.Position.X
+                                local v269 = v267.Position.Z
+                                local v270 = Vector3.new(v268, 0, v269)
+                                local v271 = v262.Position.X
+                                local v272 = v262.Position.Z
+                                if (v270 - Vector3.new(v271, 0, v272)).Magnitude <= v266 then
+                                    table.insert(v263, v267)
+                                end
+                            end
+                        end
+                        if #v263 >= 1 then
+                            for _, u273 in pairs(v263) do
+                                if not u273:GetAttribute("Done") then
+                                    u273:SetAttribute("Done", true)
+                                    u273.Color = Color3.fromRGB(206, 128, 38)
+                                    u1:Create(u273, TweenInfo.new(5, Enum.EasingStyle.Quad), {
+                                        ["Color"] = Color3.fromRGB(0, 255, 0)
+                                    }):Play()
+                                    task.delay(0.65, function() --[[Anonymous function at line 1254]]
+                                        --[[
+                                        Upvalues:
+                                            [1] = u273
+                                        --]]
+                                        u273.Material = Enum.Material.Neon
+                                    end)
+                                    u273.Transparency = 0
+                                    u273.CastShadow = false
+                                    u273.Name = "DalgonaClickPart"
+                                    u273.Position = u273.Position + Vector3.new(0, 0.005, 0)
+                                    u273.Parent = u49
+                                    u106 = u106 + 1
+                                    u60.WorldPosition = v262.Position
+                                    local v274 = {
+                                        ["attachmentorparticle"] = u60,
+                                        ["tbloptions"] = {
+                                            ["LessEmit"] = u118,
+                                            ["DontCloneOnClient"] = true
+                                        }
+                                    }
+                                    u35.EmitParticle(v274)
+                                    local v275 = u8:NextInteger(1, 3)
+                                    local v276 = v275 == 1 and "rbxassetid://130366178077319" or (v275 == 2 and "rbxassetid://107977713122474" or (v275 == 3 and "rbxassetid://74545150600683" or false))
+                                    u34.PlaySound(workspace.Sounds, v276, 0.2)
+                                    u34.PlaySound(workspace.Sounds, "rbxassetid://98513397768703", 0.2)
+                                end
+                            end
+                        end
+                    end
+                    for _, v277 in ipairs(u50:GetChildren()) do
+                        if v277:IsA("BasePart") then
+                            local v278 = v277.Position.X
+                            local v279 = v277.Position.Z
+                            local v280 = Vector3.new(v278, 0, v279)
+                            local v281 = v262.Position.X
+                            local v282 = v262.Position.Z
+                            local v283 = Vector3.new(v281, 0, v282)
+                            if (v280 - v283).Magnitude <= u103 then
+                                table.insert(v263, v277)
+                            elseif not v265 and (v280 - v283).Magnitude <= u104 then
+                                v265 = true
+                            end
+                        end
+                    end
+                    for _, v284 in ipairs(u49:GetChildren()) do
+                        if v284:IsA("BasePart") and (v284.Name == "DalgonaClickPart" and v284.Parent) then
+                            local v285 = v284.Position.X
+                            local v286 = v284.Position.Z
+                            local v287 = Vector3.new(v285, 0, v286)
+                            local v288 = v262.Position.X
+                            local v289 = v262.Position.Z
+                            local v290 = Vector3.new(v288, 0, v289)
+                            if (v287 - v290).Magnitude <= u103 then
+                                table.insert(v264, v284)
+                            elseif not v265 and (v287 - v290).Magnitude <= u103 then
+                                v265 = true
+                            end
+                        end
+                    end
+                    local v291 = (not v265 and (v262 and v262.Instance.Name == "DalgonaClickPart") or not v265 and (v262 and (v262.Instance and (v262.Instance.Parent and v262.Instance.Parent == u50)))) and true or v265
+                    if #v263 >= 1 or #v264 >= 1 then
+                        for _, v292 in pairs(v263) do
+                            if not v292:GetAttribute("Done") then
+                                v292:SetAttribute("Done", true)
+                                v292.Color = Color3.fromRGB(0, 255, 0)
+                                v292.Transparency = 0
+                                v292.CastShadow = false
+                                v292.Name = "DalgonaClickPart"
+                                v292.Material = Enum.Material.Neon
+                                v292.Position = v292.Position + Vector3.new(0, 0.005, 0)
+                                v292.Parent = u49
+                                u106 = u106 + 1
+                                u60.WorldPosition = v262.Position
+                                local v293 = {
+                                    ["attachmentorparticle"] = u60,
+                                    ["tbloptions"] = {
+                                        ["LessEmit"] = u118,
+                                        ["DontCloneOnClient"] = true
+                                    }
+                                }
+                                u35.EmitParticle(v293)
+                                local v294 = u8:NextInteger(1, 3)
+                                local v295 = v294 == 1 and "rbxassetid://130366178077319" or (v294 == 2 and "rbxassetid://107977713122474" or (v294 == 3 and "rbxassetid://74545150600683" or false))
+                                u34.PlaySound(workspace.Sounds, v295, 0.3)
+                            end
+                        end
+                    elseif not (v291 or u155) then
+                        warn("clicked wrong in dalgona ")
+                        u167()
+                    end
+                end
+                table.clear(v263)
+                table.clear(v264)
+            elseif u48 then
+                u169 = nil
+            end
+        end)
+        local u296 = nil
+        u296 = u114.OnClientEvent:Connect(function(p297) --[[Anonymous function at line 1354]]
+            --[[
+            Upvalues:
+                [1] = u296
+                [2] = u71
+                [3] = u153
+            --]]
+            if p297 and p297.Disconnect then
+                u296:Disconnect()
+                u71()
+            elseif p297 and p297.FailedCutscene then
+                u153()
+            end
+        end)
+        local u298 = nil
+        u298 = u39.ChildAdded:Connect(function(p299) --[[Anonymous function at line 1364]]
+            --[[
+            Upvalues:
+                [1] = u298
+                [2] = u71
+            --]]
+            if p299.Name == "Dead" then
+                u298:Disconnect()
+                u71()
+            end
+        end)
+        local v300 = u134
+        table.insert(u45, v300)
+        local v301 = u298
+        table.insert(u45, v301)
+        table.insert(u45, v75)
+        table.insert(u45, v79)
+        local v302 = u129
+        table.insert(u45, v302)
+        local v303 = u296
+        table.insert(u45, v303)
+    end
+end
+return Dalgona
